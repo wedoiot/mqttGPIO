@@ -1,6 +1,9 @@
 #!/usr/bin/python
 import paho.mqtt.client as mqtt
 import OPi.GPIO as GPIO
+import os 
+MQTT_USER=os.environ.get('MQTT_USER')
+MQTT_PASSWD=os.environ.get('MQTT_PASSWD')
 
 GPIO.setmode(GPIO.BOARD)
 GPIO.setup(5, GPIO.OUT)
@@ -42,7 +45,7 @@ client.on_message   = on_message
 client.on_subscribe = on_subscribe
 client.on_publish   = on_publish
 # Assign credentials
-client.username_pw_set(username="wedoiot",password="Plamontina01")
+client.username_pw_set(MQTT_USER,MQTT_PASSWD)
 # Connect
 client.connect("192.168.1.4", 1883, 60)
 
